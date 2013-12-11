@@ -1,23 +1,20 @@
 {
 	"bold_folder_labels": false,
 	"caret_style": "phase",
-	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night-Eighties.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"flatland_square_tabs": true,
 	"folder_exclude_patterns":
 	[
 		".git"
 	],
-	"font_face": "Source Code Pro",
-	"font_options":
-	[
-		"subpixel_antialias"
-	],
-	"font_size": 12,
+	"font_size": 14,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"Vintage",
+		"Markdown Preview"
 	],
 	"indent_to_bracket": true,
 	"phoenix_color_blue": true,
@@ -29,7 +26,7 @@
 	"phoenix_tabs_small": true,
 	"rulers":
 	[
-		80
+		100
 	],
 	"soda_folder_icons": true,
 	"tab_size": 2,
@@ -37,6 +34,5 @@
 	"trailing_spaces_trim_on_save": true,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
-	"use_simple_full_screen": true,
-	"vintage_start_in_command_mode": true
+	"use_simple_full_screen": true
 }
