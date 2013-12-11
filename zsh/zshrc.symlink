@@ -37,14 +37,14 @@ export ZENDESK_PROVISIONING_PATH=~/Code/zendesk/zendesk_provisioning
 #export ZENDESK_PORT=443
 
 # Aliases
-#alias apps="cd $ZENDESK_ROOT/apps"
-#alias classic="cd $ZENDESK_CLASSIC_PATH"
-#alias carson="cd $ZENDESK_CARSON_PATH"
-#alias console="cd $ZENDESK_ROOT/zendesk_console"
-#alias framework="cd $ZENDESK_ROOT/zendesk_app_framework"
-#alias lotus="cd $ZENDESK_ROOT/zendesk_console"
-#alias market="cd $ZENDESK_APP_MARKET_PATH"
-#alias zd="cd $ZENDESK_ROOT"
+alias apps="cd $ZENDESK_ROOT/apps"
+alias classic="cd $ZENDESK_CLASSIC_PATH"
+alias carson="cd $ZENDESK_CARSON_PATH"
+alias console="cd $ZENDESK_ROOT/zendesk_console"
+alias zaf="cd $ZENDESK_ROOT/zendesk_app_framework"
+alias lotus="cd $ZENDESK_ROOT/zendesk_console"
+alias zam="cd $ZENDESK_APP_MARKET_PATH"
+alias zd="cd $ZENDESK_ROOT"
 
 
 # INITIALIZATION
@@ -79,5 +79,15 @@ fi
 eval "$(rbenv init -)"
 
 
-# Z Bootstrap
-eval "$(/Users/tmcinerney/Code/zendesk/z/bin/z init -)"
+# Add the following to your ~/.bashrc or ~/.zshrc
+#
+# Alternatively, copy/symlink this file and source in your shell.  See `hitch --setup-path`.
+
+hitch() {
+  command hitch "$@"
+  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
+}
+alias unhitch='hitch -u'
+
+# Uncomment to persist pair info between terminal instances
+hitch
