@@ -5,7 +5,8 @@
 *.rbc
 .floo*
 .ruby-version
-.sublime-project
+*.sublime-project
 .idea
 tags
 vendor/bundle
+*.sublime-workspace
