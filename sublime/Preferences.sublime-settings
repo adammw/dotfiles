@@ -6,7 +6,7 @@
   "ignored_packages": [
     "Vintage"
   ],
-  "translateTabsToSpaces": true,
-  "tabSize": 2,
+  "translate_tabs_to_spaces": true,
+  "tab_size": 2,
   "rulers": [80, 120]
 }
