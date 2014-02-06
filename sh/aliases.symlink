@@ -1,7 +1,45 @@
+# GENERAL
+# ********************************************************
+alias cd~='cd ~'
+alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+# RUBY
+# ********************************************************
+
 alias be='bundle exec'
-alias zaf='cd ~/Code/zendesk/zendesk_app_framework/'
-alias zam='cd ~/Code/zendesk/zendesk_app_market/'
-alias zas='cd ~/Code/zendesk/zendesk_apps_support/'
+alias bi='bundle install --path vendor/bundle'
+alias sb='script/bootstrap'
+alias sc='script/console'
+alias sg='script/generate'
+alias sd='script/destroy'
+alias migrate='rake db:migrate db:test:clone'
+
+
+# ZENDESK
+# ********************************************************
+
+# Paths
+export ZENDESK_ROOT=~/Code/zendesk
+export ZENDESK_APP_MARKET_PATH=~/Code/zendesk/zendesk_app_market
+export ZENDESK_APPS_TOOLS_PATH=~/Code/zendesk/zendesk_apps_tools
+export ZENDESK_CARSON_PATH=~/Code/zendesk/zendesk_carson
+export ZENDESK_CLASSIC_PATH=~/Code/zendesk/zendesk
+export ZENDESK_PROVISIONING_PATH=~/Code/zendesk/zendesk_provisioning
+
+# Server configuration
+#export ZENDESK_HOST=zendesk.dev
+#export ZENDESK_PORT=443
+
+# Aliases
+alias apps="cd $ZENDESK_ROOT/apps"
+alias classic="cd $ZENDESK_CLASSIC_PATH"
+alias carson="cd $ZENDESK_CARSON_PATH"
+alias console="cd $ZENDESK_ROOT/zendesk_console"
+alias zaf="cd $ZENDESK_ROOT/zendesk_app_framework"
+alias zas="cd $ZENDESK_ROOT/zendesk_apps_support"
+alias lotus="cd $ZENDESK_ROOT/zendesk_console"
+alias zam="cd $ZENDESK_APP_MARKET_PATH"
+alias zd="cd $ZENDESK_ROOT"
