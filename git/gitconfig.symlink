@@ -1,6 +1,6 @@
 [user]
-	name = Alistair Roche
-	email = roche.a@gmail.com
+  name = Adam Malcontenti-Wilson
+  email = amalcontenti-wilson@zendesk.com
 
 [alias]
   a       = add -p
@@ -14,7 +14,6 @@
   standup = log --since=yesterday --author='Travers McInerney'
 
 [core]
-	editor = vim
 	excludesfile = ~/.gitignore
 
 [color]
@@ -29,22 +28,11 @@
   added = green
   untracked = red
 
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-
 [push]
-	default = upstream
-
-[branch]
-  autosetuprebase = always
+	default = simple
 
 [credential]
   helper = /opt/boxen/bin/boxen-git-credential
 
 [hub]
-protocol = https
+  protocol = https

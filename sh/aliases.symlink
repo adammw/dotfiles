@@ -1,0 +1,7 @@
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias be='bundle exec'
+alias zaf='cd ~/Code/zendesk/zendesk_app_framework/'
+alias zam='cd ~/Code/zendesk/zendesk_app_market/'
+alias zas='cd ~/Code/zendesk/zendesk_apps_support/'
