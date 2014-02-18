@@ -31,24 +31,26 @@ eval "$(hub alias -s)"
 # ********************************************************
 
 # Paths
-export ZENDESK_ROOT=~/Code/zendesk
-export ZENDESK_APP_MARKET_PATH=~/Code/zendesk/zendesk_app_market
-export ZENDESK_APPS_TOOLS_PATH=~/Code/zendesk/zendesk_apps_tools
-export ZENDESK_CARSON_PATH=~/Code/zendesk/zendesk_carson
-export ZENDESK_CLASSIC_PATH=~/Code/zendesk/zendesk
-export ZENDESK_PROVISIONING_PATH=~/Code/zendesk/zendesk_provisioning
+if [ -d "${HOME}/Code/zendesk" ]; then
+  export ZENDESK_ROOT=~/Code/zendesk
+  export ZENDESK_APP_MARKET_PATH=~/Code/zendesk/zendesk_app_market
+  export ZENDESK_APPS_TOOLS_PATH=~/Code/zendesk/zendesk_apps_tools
+  export ZENDESK_CARSON_PATH=~/Code/zendesk/zendesk_carson
+  export ZENDESK_CLASSIC_PATH=~/Code/zendesk/zendesk
+  export ZENDESK_PROVISIONING_PATH=~/Code/zendesk/zendesk_provisioning
 
-# Server configuration
-#export ZENDESK_HOST=zendesk.dev
-#export ZENDESK_PORT=443
+  # Server configuration
+  #export ZENDESK_HOST=zendesk.dev
+  #export ZENDESK_PORT=443
 
-# Aliases
-alias apps="cd $ZENDESK_ROOT/apps"
-alias classic="cd $ZENDESK_CLASSIC_PATH"
-alias carson="cd $ZENDESK_CARSON_PATH"
-alias console="cd $ZENDESK_ROOT/zendesk_console"
-alias zaf="cd $ZENDESK_ROOT/zendesk_app_framework"
-alias zas="cd $ZENDESK_ROOT/zendesk_apps_support"
-alias lotus="cd $ZENDESK_ROOT/zendesk_console"
-alias zam="cd $ZENDESK_APP_MARKET_PATH"
-alias zd="cd $ZENDESK_ROOT"
+  # Aliases
+  alias apps="cd $ZENDESK_ROOT/apps"
+  alias classic="cd $ZENDESK_CLASSIC_PATH"
+  alias carson="cd $ZENDESK_CARSON_PATH"
+  alias console="cd $ZENDESK_ROOT/zendesk_console"
+  alias zaf="cd $ZENDESK_ROOT/zendesk_app_framework"
+  alias zas="cd $ZENDESK_ROOT/zendesk_apps_support"
+  alias lotus="cd $ZENDESK_ROOT/zendesk_console"
+  alias zam="cd $ZENDESK_APP_MARKET_PATH"
+  alias zd="cd $ZENDESK_ROOT"
+fi
