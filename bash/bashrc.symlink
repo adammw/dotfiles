@@ -114,3 +114,6 @@ fi
 
 # enable autojump
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+# enable nvm
+[[ $(brew ls --versions nvm) == nvm* ]] && source $(brew --prefix nvm)/nvm.sh
