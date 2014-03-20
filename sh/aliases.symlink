@@ -28,7 +28,7 @@ alias migrate='rake db:migrate db:test:clone'
 # GITHUB
 # ********************************************************
 
-eval "$(hub alias -s)"
+[[ -x $(which hub) ]] && eval "$(hub alias -s)"
 
 # ZENDESK
 # ********************************************************
