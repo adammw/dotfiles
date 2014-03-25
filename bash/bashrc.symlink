@@ -49,10 +49,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
     CLICOLOR=1
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w'
     CLICOLOR=0
 fi
 unset color_prompt force_color_prompt
@@ -121,10 +121,24 @@ if [[ -x "$(which dircolors)" ]]; then
     alias egrep='egrep --color=auto'
 fi
 
-# enable programmable completion features
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
 if [[ -f "$HOMEBREW_PREFIX/etc/bash_completion" ]] && ! shopt -oq posix; then
     #unalias printf # we need macosx printf, not GNU printf
     source "$HOMEBREW_PREFIX/etc/bash_completion"
+fi
+
+# enable git prompt
+if [ -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt.sh" ]; then
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_UNTRACKEDFILES=true
+    if [ "$CLICOLOR" = 1 ]; then
+        GIT_PS1_SHOWCOLORHINTS=true
+    fi
+    PROMPT_COMMAND="__git_ps1 \"$PS1\" \"\\\\\$ \""
+else
+    PS1="$PS1\$ "
 fi
 
 # enable autojump
