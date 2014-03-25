@@ -24,3 +24,8 @@ if [ -n "$BASH_VERSION" ]; then
     . "$HOME/.bashrc"
   fi
 fi
+
+# set MANPATH so it includes user's private manpages if it exists
+if [ -d "$HOME/share/man" ] ; then
+    MANPATH="$HOME/share/man:$MANPATH"
+fi

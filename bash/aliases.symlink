@@ -1,3 +1,16 @@
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
+
+# Reload helper
+reload_passenger() {
+  git rev-parse 2>&1 > /dev/null
+  if [[ $? -eq 0 && -d "$(git rev-parse --show-toplevel)/tmp" ]]; then
+    touch "$(git rev-parse --show-toplevel)/tmp/reload.txt"
+  else
+    echo "Not a passenger git repository"
+  fi
+}
+
+export -f "reload_passenger"
+alias reload!='reload_passenger'

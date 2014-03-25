@@ -5,6 +5,9 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 # SUBLIME
 # ********************************************************
@@ -25,7 +28,7 @@ alias migrate='rake db:migrate db:test:clone'
 # GITHUB
 # ********************************************************
 
-eval "$(hub alias -s)"
+[[ -x $(which hub) ]] && eval "$(hub alias -s)"
 
 # ZENDESK
 # ********************************************************
