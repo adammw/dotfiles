@@ -1,0 +1,33 @@
+AllCops:
+  # Include gemspec and Rakefile
+  Includes:
+    - '**/*.gemspec'
+    - '**/Rakefile'
+  Excludes:
+    - 'vendor/**'
+
+ClassLength:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+MethodLength:
+  Enabled: false
+
+SpaceInsideBrackets:
+  Enabled: false
+
+LineLength:
+  Max: 120
+
+HashSyntax:
+  EnforcedStyle: hash_rockets
+
+CommentAnnotation:
+  Keywords:
+    - TODO
+    - FIXME
+    - OPTIMIZE
+    - HACK
+    - REVIEW
