@@ -4,9 +4,9 @@ fi
 
 # Reload helper
 reload_passenger() {
-  git rev-parse 2&>1 > /dev/null
+  git rev-parse > /dev/null 2>&1
   if [[ $? -eq 0 && -d "$(git rev-parse --show-toplevel)/tmp" ]]; then
-    touch "$(git rev-parse --show-toplevel)/tmp/reload.txt"
+    touch "$(git rev-parse --show-toplevel)/tmp/restart.txt"
   else
     echo "Not a passenger git repository"
   fi
