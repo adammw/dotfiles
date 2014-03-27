@@ -8,5 +8,8 @@
   hist     = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   lg       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   standup  = log --since=yesterday --author='Adam Malcontenti-Wilson'
+  prod     = undo-dev
   dev      = stash apply stash^{/dev}
   save-dev = stash save dev
+  undo-dev = !git stash show stash^{/dev} -p | git apply -R
+  stash-unapply = !git stash show -p | git apply -R
