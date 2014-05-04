@@ -143,6 +143,7 @@ fi
 
 # enable autojump
 [[ -s $HOMEBREW_PREFIX/etc/autojump.sh ]] && source $HOMEBREW_PREFIX/etc/autojump.sh
+[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
 
 # local customisations
 if [ -f "$HOME/.bashrc.local" ]; then
