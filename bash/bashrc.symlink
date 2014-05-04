@@ -130,7 +130,7 @@ if [[ -f "$HOMEBREW_PREFIX/etc/bash_completion" ]] && ! shopt -oq posix; then
 fi
 
 # enable git prompt
-if [ -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt.sh" ]; then
+if [[ -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt.sh" || -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt" ]]; then
     GIT_PS1_SHOWDIRTYSTATE=true
     GIT_PS1_UNTRACKEDFILES=true
     if [ "$CLICOLOR" = 1 ]; then
