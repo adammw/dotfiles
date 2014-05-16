@@ -10,6 +10,11 @@ alias la='ls -A'
 alias l='ls -CF'
 alias tf='tail -f'
 
+# RSYNC
+# ********************************************************
+alias pcp='rsync --progress'
+alias rmv='rsync --progress --remove-source-files'
+
 # SUBLIME
 # ********************************************************
 
