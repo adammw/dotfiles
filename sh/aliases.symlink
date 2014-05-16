@@ -8,6 +8,7 @@ alias ....='cd ../../..'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias tf='tail -f'
 
 # SUBLIME
 # ********************************************************
@@ -17,6 +18,7 @@ alias subl.='subl . && subl && subl'
 # RUBY
 # ********************************************************
 
+alias b='bundle'
 alias be='bundle exec'
 alias bi='bundle install --path vendor/bundle'
 alias sb='script/bootstrap'
@@ -29,6 +31,11 @@ alias migrate='rake db:migrate db:test:clone'
 # ********************************************************
 
 [[ -x $(which hub) ]] && eval "$(hub alias -s)"
+
+# GIT
+# ********************************************************
+
+alias co='git checkout'
 
 # ZENDESK
 # ********************************************************
@@ -56,4 +63,7 @@ if [ -d "${HOME}/Code/zendesk" ]; then
   alias lotus="cd $ZENDESK_ROOT/zendesk_console"
   alias zam="cd $ZENDESK_APP_MARKET_PATH"
   alias zd="cd $ZENDESK_ROOT"
+  alias tfcl="tail -f $ZENDESK_CARSON_PATH/log/development.log"
+  alias reload-all="boxen --restart-service nginx"
+  alias reload-carson="touch $ZENDESK_CARSON_PATH/tmp/restart.txt"
 fi
