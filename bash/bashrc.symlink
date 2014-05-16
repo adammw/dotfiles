@@ -129,6 +129,10 @@ if [[ -f "$HOMEBREW_PREFIX/etc/bash_completion" ]] && ! shopt -oq posix; then
     source "$HOMEBREW_PREFIX/etc/bash_completion"
 fi
 
+if [[ -d "$HOME/.bash_completion.d" ]]; then
+    for f in "$HOME/.bash_completion.d/*"; do source $f; done
+fi
+
 # enable git prompt
 if [ -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt.sh" ]; then
     GIT_PS1_SHOWDIRTYSTATE=true
