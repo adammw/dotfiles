@@ -38,5 +38,13 @@ service() {
   esac
 }
 
+if [[ -f "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]]; then
+  export GOOGLE_CHROME_BIN='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+  new_chrome_session() {
+    "$GOOGLE_CHROME_BIN" --no-first-run --user-data-dir="$(mktemp -d)" "$@" >/dev/null 2>&1 &
+    disown >/dev/null 2>&1
+  }
+fi
+
 export -f "reload_passenger"
 alias reload!='reload_passenger'
