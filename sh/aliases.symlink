@@ -8,7 +8,6 @@ alias ....='cd ../../..'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias tf='tail -f'
 
 # RSYNC
 # ********************************************************
@@ -19,6 +18,12 @@ alias rmv='rsync --progress --remove-source-files'
 # ********************************************************
 
 alias subl.='subl . && subl && subl'
+
+# TAIL
+# ********************************************************
+alias tf='tail -f'
+alias tfdl='tail -f $(git rev-parse --show-toplevel)/log/development.log'
+alias tdl='tail -f $(git rev-parse --show-toplevel)/log/development.log'
 
 # RUBY
 # ********************************************************
