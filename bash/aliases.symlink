@@ -12,31 +12,33 @@ reload_passenger() {
   fi
 }
 
-# Service helper
-service() {
-  case $1 in
-    status*)
-      PID=$(sudo launchctl list | grep -E "$2\$" | cut -f 1)
-      if [[ $PID == "-" ]]; then
-        echo 'Stopped'
-      else
-        echo -e "Running\t\tPID: $PID"
-      fi
-      ;;
-    start*)
-      sudo launchctl start $2
-      ;;
-    stop*)
-      sudo launchctl stop $2
-      ;;
-    restart*)
-      sudo launchctl stop $2
-      sudo launchctl start $2
-      ;;
-    *)
-      echo $"Usage: $0 {start|stop|restart|status}"
-  esac
-}
+# Mac OS X Service helper
+if [[ -x /bin/launchctl ]]; then
+  service() {
+    case $1 in
+      status*)
+        PID=$(sudo launchctl list | grep -E "$2\$" | cut -f 1)
+        if [[ $PID == "-" ]]; then
+          echo 'Stopped'
+        else
+          echo -e "Running\t\tPID: $PID"
+        fi
+        ;;
+      start*)
+        sudo launchctl start $2
+        ;;
+      stop*)
+        sudo launchctl stop $2
+        ;;
+      restart*)
+        sudo launchctl stop $2
+        sudo launchctl start $2
+        ;;
+      *)
+        echo $"Usage: service {start|stop|restart|status} {service-name}"
+    esac
+  }
+fi
 
 export -f "reload_passenger"
 alias reload!='reload_passenger'
