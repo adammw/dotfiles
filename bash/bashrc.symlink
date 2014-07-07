@@ -68,7 +68,7 @@ esac
 
 # define my default editor
 export EDITOR='nano'
-export VISUAL='subl -w'
+export VISUAL='atom -w'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
