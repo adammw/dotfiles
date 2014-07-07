@@ -45,7 +45,11 @@ alias migrate='rake db:migrate db:test:clone'
 # GIT
 # ********************************************************
 
+alias g=git
+alias gco='git checkout'
 alias co='git checkout'
+alias gcm='git checkout master'
+alias gcmpbr='git checkout master && git pull && bundle && reload'
 
 # ZENDESK
 # ********************************************************
