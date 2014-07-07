@@ -80,4 +80,7 @@ if [ -d "${HOME}/Code/zendesk" ]; then
   alias tfcl="tail -f $ZENDESK_CARSON_PATH/log/development.log"
   alias reload-all="boxen --restart-service nginx"
   alias reload-carson="touch $ZENDESK_CARSON_PATH/tmp/restart.txt"
+  alias console_carson="pushd $ZENDESK_CARSON_PATH > /dev/null; bundle exec rails console; popd > /dev/null"
+  alias console_classic="pushd $ZENDESK_CLASSIC_PATH > /dev/null; bundle exec rails console; popd > /dev/null"
+  alias console_jig="pushd $ZENDESK_ROOT/jig > /dev/null; bundle exec rails console; popd > /dev/null"
 fi
