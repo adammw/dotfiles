@@ -63,5 +63,19 @@ if [[ -f "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]]; then
   fi
 fi
 
+bundle_timer() {
+  if [ "$#" == "0" ] || [ "$1" == "install" ]; then START_TIME=$(date +'%s'); fi
+  bundle "$@"
+  if [ "$#" == "0" ] || [ "$1" == "install" ]; then
+    END_TIME=$(date +'%s')
+    BUNDLE_TIME=`expr $END_TIME - $START_TIME`
+    echo $BUNDLE_TIME >> $HOME/.bundletime.log
+  fi
+}
+bundle_time() {
+  awk '{s+=$1} END {print s}' $HOME/.bundletime.log
+}
+alias bundle=bundle_timer
+
 export -f "reload_passenger"
 alias reload!='reload_passenger'
