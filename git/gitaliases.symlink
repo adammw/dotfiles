@@ -5,6 +5,7 @@
   cim      = commit -m
   st       = status -sb
   br       = branch
+  travis   = ci-status
   hist     = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   lg       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   standup  = log --since=yesterday --author='Adam Malcontenti-Wilson'
@@ -13,3 +14,5 @@
   undo-dev = !git stash show stash^{/dev} -p | git apply -R
   prod     = !git stash show stash^{/dev} -p | git apply -R
   stash-unapply = !git stash show -p | git apply -R
+  branch-name = !"git for-each-ref --format=\"%(refname:short)\" $(git symbolic-ref HEAD)"
+  zpush = !"git push -u origin `git branch-name`:`git branch-name`"

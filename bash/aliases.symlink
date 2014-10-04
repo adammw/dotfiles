@@ -40,5 +40,44 @@ if [[ -x /bin/launchctl ]]; then
   }
 fi
 
+# PR
+pr_branches() {
+  REPO=$(echo $1 | cut -d / -f 1)
+  PR_NUMBER=$(echo $1 | cut -d / -f 2)
+  SHA=$(curl --silent -n "$HOME/.netrc" "https://api.github.com/repos/zendesk/$REPO/pulls/$PR_NUMBER" | json head.sha)
+  pushd "$ZENDESK_ROOT/$REPO" >/dev/null
+  echo "$SHA is in:"
+  git branch --contains $SHA
+  popd >/dev/null
+}
+
+if [[ -f "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]]; then
+  export GOOGLE_CHROME_BIN='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+  new_chrome_session() {
+    "$GOOGLE_CHROME_BIN" --no-first-run --user-data-dir="$(mktemp -d)" "$@" >/dev/null 2>&1 &
+    disown >/dev/null 2>&1
+  }
+  if [[ -d "$HOME/Library/Application Support/Google/Chrome/RadarSession" ]]; then
+    radar_chrome_session() {
+      "$GOOGLE_CHROME_BIN" --no-first-run --user-data-dir="$HOME/Library/Application Support/Google/Chrome/RadarSession" "$@" >/dev/null 2>&1 &
+      disown >/dev/null 2>&1
+    }
+  fi
+fi
+
+bundle_timer() {
+  if [ "$#" == "0" ] || [ "$1" == "install" ]; then START_TIME=$(date +'%s'); fi
+  bundle "$@"
+  if [ "$#" == "0" ] || [ "$1" == "install" ]; then
+    END_TIME=$(date +'%s')
+    BUNDLE_TIME=`expr $END_TIME - $START_TIME`
+    echo $BUNDLE_TIME >> $HOME/.bundletime.log
+  fi
+}
+bundle_time() {
+  awk '{s+=$1} END {print s}' $HOME/.bundletime.log
+}
+alias bundle=bundle_timer
+
 export -f "reload_passenger"
 alias reload!='reload_passenger'
