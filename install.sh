@@ -23,6 +23,11 @@ install_symlink ".profile" "sh/profile.symlink"
 install_symlink ".bashrc" "bash/bashrc.symlink"
 install_symlink ".profile" "bash/profile.symlink"
 
+# tmux
+if hash tmux 2>/dev/null; then
+  install_symlink ".tmux.conf" "tmux/tmux.conf.symlink"
+fi
+
 # ruby
 if hash ruby 2>/dev/null; then
   install_symlink ".gemrc" "ruby/gemrc.symlink"
