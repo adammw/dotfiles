@@ -28,6 +28,12 @@ if hash tmux 2>/dev/null; then
   install_symlink ".tmux.conf" "tmux/tmux.conf.symlink"
 fi
 
+# vim
+if hash vim 2>/dev/null; then
+  install_symlink ".vimrc" "vim/vimrc.symlink"
+  install_symlink ".vim" "vim/"
+fi
+
 # ruby
 if hash ruby 2>/dev/null; then
   install_symlink ".gemrc" "ruby/gemrc.symlink"
