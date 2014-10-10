@@ -1,4 +1,3 @@
-
 "--------------
 " Load pathogen
 "--------------
@@ -14,11 +13,8 @@ call pathogen#helptags()
 "" Theming
 ""
 
-colorscheme base16-default
-if !has('gui_running')
-  set background=dark
-  set t_Co=256
-endif
+colorscheme Tomorrow-Night-Custom
+
 
 ""
 "" Basic Setup
@@ -28,6 +24,7 @@ set nocompatible      " Use vim, no vi defaults
 set hidden            " Allow unsaved background buffers
 set number            " Show line numbers
 set ruler             " Show line and column number
+set cursorline        " Highlight current line under cursor
 syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8    " Set default encoding to UTF-8
 set splitbelow        " Open horizontal splits below
@@ -134,7 +131,7 @@ nmap <S-Enter> O<Esc>                       " Insert new line above
 nmap <silent> <leader>ev :e $MYVIMRC<CR>    " Edit vimrc
 nmap <silent> <leader>sv :so $MYVIMRC<CR>   " Reload vimrc
 
-map <leader>/ <plug>NERDCommenterToggle<CR>   " Toggle comments
+map <leader>/ <plug>NERDCommenterToggle<CR>  " Toggle comments
 
 map <leader>f :Ack<space>
 
@@ -165,6 +162,21 @@ nmap <leader>gp :Git push<CR>
 " Map the arrow keys to be based on display lines, not physical lines
 map <Down> gj
 map <Up> gk
+
+" Allow tab to indent in command mode
+nmap <Tab> >>
+
+" Allow shift+tab to unindent
+nmap <S-Tab> <<
+imap <S-Tab> <Esc><<i
+
+" Make shift+up/down enter visual mode
+nmap <S-Down> vgj
+imap <S-Down> <Esc>vgj
+vmap <S-Down> gj
+nmap <S-Up> vgk
+imap <S-Up> <Esc>vgk
+vmap <S-Up> gk
 
 " ZoomWin
 map <leader>zw :ZoomWin<CR>
