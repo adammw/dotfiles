@@ -32,6 +32,14 @@ fi
 if hash vim 2>/dev/null; then
   install_symlink ".vimrc" "vim/vimrc.symlink"
   install_symlink ".vim" "vim/"
+  git submodule update --recursive
+fi
+
+# git
+if hash git 2>/dev/null; then
+  install_symlink ".gitaliases" "git/gitaliases.symlink"
+  install_symlink ".gitconfig" "git/gitconfig.symlink"
+  install_symlink ".gitignore" "git/gitignore.symlink"
 fi
 
 # ruby
