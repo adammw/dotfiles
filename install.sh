@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$PWD" != "$HOME/.dotfiles" ]; then
   DOTFILES_PATH="$PWD"
@@ -32,6 +32,7 @@ fi
 if hash vim 2>/dev/null; then
   install_symlink ".vimrc" "vim/vimrc.symlink"
   install_symlink ".vim" "vim/"
+  git submodule init
   git submodule update --recursive
 fi
 
