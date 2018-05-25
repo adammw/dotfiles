@@ -50,3 +50,14 @@ if hash ruby 2>/dev/null; then
   install_symlink ".rspec" "ruby/rspec.symlink"
   install_symlink ".rubocop.yml" "ruby/rubocop.yml.symlink"
 fi
+
+# osx
+if [ "$(uname)" == "Darwin" ]; then
+  # screenshots folder
+  mkdir -p $HOME/Pictures/Screenshots
+  defaults write com.apple.screencapture location $HOME/Pictures/Screenshots
+  
+  # install keybindings
+  mkdir -p $HOME/Library/KeyBindings
+  install_symlink "Library/Keybindings/DefaultKeyBinding.dict" "osx/DefaultKeyBinding.dict"
+fi
