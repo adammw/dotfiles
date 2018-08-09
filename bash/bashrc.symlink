@@ -97,17 +97,17 @@ if [[ -n "$(which brew)" ]]; then
     HOMEBREW_PREFIX="$(brew --prefix)"
 
     # use unprefixed GNU versions of coreutils
-    if [[ -d "$HOMEBREW_PRFIX/opt/coreutils/libexec/" ]]; then
-        PATH="$HOMEBREW_PRFIX/opt/coreutils/libexec/gnubin:$PATH"
-        MANPATH="$HOMEBREW_PRFIX/opt/coreutils/libexec/gnuman:$MANPATH"
+    if [[ -d "$HOMEBREW_PREFIX/opt/coreutils/" ]]; then
+        PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+        MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
     fi
 
     # enable nvm
-    [[ -f "$HOMEBREW_PRFIX/opt/nvm/nvm.sh" ]] && source "$HOMEBREW_PRFIX/opt/nvm/nvm.sh"
+    [[ -f "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ]] && source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
 
     # ruby gems from homebrew
-    if [[ -d "$HOMEBREW_PRFIX/opt/ruby/bin/" ]]; then
-        PATH=$PATH:$HOMEBREW_PRFIX/opt/ruby/bin/
+    if [[ -d "$HOMEBREW_PREFIX/opt/ruby/bin/" ]]; then
+        PATH=$PATH:$HOMEBREW_PREFIX/opt/ruby/bin/
     fi
 else
     HOMEBREW_PREFIX="/"
