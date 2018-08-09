@@ -1,9 +1,10 @@
 AllCops:
+  TargetRubyVersion: 2.3
   # Include gemspec and Rakefile
-  Includes:
+  Include:
     - '**/*.gemspec'
     - '**/Rakefile'
-  Excludes:
+  Exclude:
     - 'vendor/**'
 
 ClassLength:
@@ -20,9 +21,6 @@ SpaceInsideBrackets:
 
 LineLength:
   Max: 120
-
-HashSyntax:
-  EnforcedStyle: hash_rockets
 
 CommentAnnotation:
   Keywords:

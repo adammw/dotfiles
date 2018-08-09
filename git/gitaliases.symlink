@@ -11,8 +11,11 @@
   standup  = log --since=yesterday --author='Adam Malcontenti-Wilson'
   dev      = stash apply stash^{/dev}
   save-dev = stash save dev
+  git      = !git
   undo-dev = !git stash show stash^{/dev} -p | git apply -R
   prod     = !git stash show stash^{/dev} -p | git apply -R
   stash-unapply = !git stash show -p | git apply -R
   branch-name = !"git for-each-ref --format=\"%(refname:short)\" $(git symbolic-ref HEAD)"
   zpush = !"git push -u origin `git branch-name`:`git branch-name`"
+  zpc = !"git zpush && open \"`hub compare -u`?expand=1\""
+  fixup = !"git commit --amend --no-edit && git push -f"

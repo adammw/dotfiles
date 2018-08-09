@@ -87,22 +87,27 @@ then
   shopt -s autocd
 fi
 
+# Uncomment these lines to enable bashrc tracing
+# PS4='+ $(/usr/local/opt/coreutils/libexec/gnubin/date "+%s.%N")\011 '
+# exec 3>&2 2>/tmp/bashstart.$$.log
+# set -x
+
 # if running with homebrew
 if [[ -n "$(which brew)" ]]; then
     HOMEBREW_PREFIX="$(brew --prefix)"
 
     # use unprefixed GNU versions of coreutils
-    if [[ -n $(brew ls --versions coreutils) ]]; then
-        PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-        MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+    if [[ -d "$HOMEBREW_PRFIX/opt/coreutils/libexec/" ]]; then
+        PATH="$HOMEBREW_PRFIX/opt/coreutils/libexec/gnubin:$PATH"
+        MANPATH="$HOMEBREW_PRFIX/opt/coreutils/libexec/gnuman:$MANPATH"
     fi
 
     # enable nvm
-    [[ -n $(brew ls --versions nvm) ]] && source $(brew --prefix nvm)/nvm.sh
+    [[ -f "$HOMEBREW_PRFIX/opt/nvm/nvm.sh" ]] && source "$HOMEBREW_PRFIX/opt/nvm/nvm.sh"
 
     # ruby gems from homebrew
-    if [[ -d $(brew --prefix ruby)/bin/ ]]; then
-        PATH=$PATH:$(brew --prefix ruby)/bin/
+    if [[ -d "$HOMEBREW_PRFIX/opt/ruby/bin/" ]]; then
+        PATH=$PATH:$HOMEBREW_PRFIX/opt/ruby/bin/
     fi
 else
     HOMEBREW_PREFIX="/"
@@ -133,8 +138,21 @@ if [[ -d "$HOME/.bash_completion.d" ]]; then
     for f in "$HOME/.bash_completion.d/*"; do source $f; done
 fi
 
-# enable git prompt
-if [[ -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt.sh" || -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt" ]]; then
+# enable bash-git-prompt
+# https://github.com/magicmonty/bash-git-prompt
+if [[ -f "$HOMEBREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh" ]]; then
+  __GIT_PROMPT_DIR="$HOMEBREW_PREFIX/opt/bash-git-prompt/share"
+  GIT_PROMPT_IGNORE_SUBMODULES=1
+  GIT_PROMPT_SHOW_UNTRACKED_FILES=normal
+  GIT_PROMPT_THEME=Single_line_Minimalist
+  source "$HOMEBREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+
+# enable git prompt if bash-git-prompt not enabled
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+if [[ ! -f "$HOMEBREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh" ]] && \
+   [[ -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt.sh" || \
+      -f "$HOMEBREW_PREFIX/etc/bash_completion.d/git-prompt" ]]; then
     GIT_PS1_SHOWDIRTYSTATE=true
     GIT_PS1_UNTRACKEDFILES=true
     if [ "$CLICOLOR" = 1 ]; then
@@ -149,7 +167,34 @@ fi
 [[ -s $HOMEBREW_PREFIX/etc/autojump.sh ]] && source $HOMEBREW_PREFIX/etc/autojump.sh
 [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
 
+# auto-bundle exec aliases
+[ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
+
+# rbenv
+if [[ -n $(which rbenv) ]]; then
+  eval "$(rbenv init -)"
+fi
+
+# nodenv
+if [[ -n $(which nodenv) ]]; then
+  eval "$(nodenv init -)"
+fi
+
+# gopath
+export GOPATH=$HOME/Code/go/
+export PATH=$PATH:$GOPATH/bin
+
+if [ -d "$HOME/.bashrc.d" ]; then
+  for f in "$HOME/.bashrc.d/*"; do
+    source $f
+  done
+fi
+
 # local customisations
 if [ -f "$HOME/.bashrc.local" ]; then
     . "$HOME/.bashrc.local"
 fi
+
+# Uncomment these lines to enable bashrc tracing
+# set +x
+# exec 2>&3 3>&-

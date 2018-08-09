@@ -4,6 +4,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
+	editor = vim
 
 [include]
   path = ~/.gitaliases
@@ -24,7 +25,7 @@
 	default = simple
 
 [credential]
-  helper = /opt/boxen/bin/boxen-git-credential
+	helper = osxkeychain
 
 [hub]
   protocol = https

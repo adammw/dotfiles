@@ -9,7 +9,11 @@ fi
 function install_symlink {
   if [ ! -h "$HOME/$1" ]; then
     echo "Symlinking $1"
-    ln -s "$DOTFILES_PATH/$2" "$HOME/$1"
+    if [[ "$(basename $1)" != "$HOME" ]] && [[ "$DOTFILES_PATH" != /* ]]; then
+      ln -s "$HOME/$DOTFILES_PATH/$2" "$HOME/$1"
+    else
+      ln -s "$DOTFILES_PATH/$2" "$HOME/$1"
+    fi
   else
     echo "Skipping $1, already exists"
   fi
@@ -20,6 +24,7 @@ install_symlink ".aliases" "sh/aliases.symlink"
 install_symlink ".profile" "sh/profile.symlink"
 
 # bash
+install_symlink ".bash_aliases" "bash/aliases.symlink"
 install_symlink ".bashrc" "bash/bashrc.symlink"
 install_symlink ".profile" "bash/profile.symlink"
 
@@ -49,6 +54,7 @@ if hash ruby 2>/dev/null; then
   install_symlink ".irbrc" "ruby/irbrc.symlink"
   install_symlink ".rspec" "ruby/rspec.symlink"
   install_symlink ".rubocop.yml" "ruby/rubocop.yml.symlink"
+  install_symlink ".pryrc" "ruby/pryrc.rb"
 fi
 
 # osx
@@ -56,7 +62,7 @@ if [ "$(uname)" == "Darwin" ]; then
   # screenshots folder
   mkdir -p $HOME/Pictures/Screenshots
   defaults write com.apple.screencapture location $HOME/Pictures/Screenshots
-  
+
   # install keybindings
   mkdir -p $HOME/Library/KeyBindings
   install_symlink "Library/Keybindings/DefaultKeyBinding.dict" "osx/DefaultKeyBinding.dict"
