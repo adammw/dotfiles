@@ -1,6 +1,7 @@
 .DS_Store
 .svn
 *~
+old/
 *.swp
 *.rbc
 .floo*

@@ -67,7 +67,7 @@ xterm*|rxvt*)
 esac
 
 # define my default editor
-export EDITOR='nano'
+export EDITOR='vim'
 export VISUAL='atom -w'
 
 # Alias definitions.
@@ -138,13 +138,15 @@ if [[ -d "$HOME/.bash_completion.d" ]]; then
     for f in "$HOME/.bash_completion.d/*"; do source $f; done
 fi
 
+
 # enable bash-git-prompt
 # https://github.com/magicmonty/bash-git-prompt
 if [[ -f "$HOMEBREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh" ]]; then
   __GIT_PROMPT_DIR="$HOMEBREW_PREFIX/opt/bash-git-prompt/share"
   GIT_PROMPT_IGNORE_SUBMODULES=1
   GIT_PROMPT_SHOW_UNTRACKED_FILES=normal
-  GIT_PROMPT_THEME=Single_line_Minimalist
+  GIT_PROMPT_THEME=Custom # modified Single_line_Minimalist
+  # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
   source "$HOMEBREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
@@ -184,6 +186,11 @@ fi
 export GOPATH=$HOME/Code/go/
 export PATH=$PATH:$GOPATH/bin
 
+# android tools
+if [ -d "$HOME/Library/Android/sdk/platform-tools" ]; then
+  export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+fi
+
 if [ -d "$HOME/.bashrc.d" ]; then
   for f in "$HOME/.bashrc.d/*"; do
     source $f
@@ -198,3 +205,8 @@ fi
 # Uncomment these lines to enable bashrc tracing
 # set +x
 # exec 2>&3 3>&-
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
